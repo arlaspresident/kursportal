@@ -1,0 +1,30 @@
+<h2>Ditt ramschema</h2>
+
+<table *ngIf="schedule.length > 0; else empty">
+  <thead>
+    <tr>
+      <th>Kurskod</th>
+      <th>Kursnamn</th>
+      <th>Poäng</th>
+      <th>Ta bort</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let course of schedule">
+      <td>{{ course.courseCode }}</td>
+      <td>{{ course.courseName }}</td>
+      <td>{{ course.points }}</td>
+      <td>
+        <button (click)="remove(course.courseCode)">❌</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="schedule.length > 0">
+  Totalt: {{ getTotalPoints() }} hp
+</p>
+
+<ng-template #empty>
+  <p>Du har inte lagt till några kurser i ditt ramschema än.</p>
+</ng-template>
