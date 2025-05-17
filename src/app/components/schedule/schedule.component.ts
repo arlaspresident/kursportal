@@ -6,7 +6,7 @@ import { Course } from '../../services/course.service';
 @Component({
   selector: 'app-schedule',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.css']
 })

@@ -25,6 +25,9 @@
         <td>{{ course.courseCode }}</td>
         <td>{{ course.courseName }}</td>
         <td>{{ course.points }}</td>
+        <td>
+            <button (click)="addToSchedule(course)">Lägg till</button>
+        </td>
       </tr>
     </tbody>
   </table>

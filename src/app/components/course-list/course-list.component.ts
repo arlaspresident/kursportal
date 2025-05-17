@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CourseService, Course } from '../../services/course.service';
+import { ScheduleService } from '../../services/schedule.service';
 
 @Component({
   selector: 'app-course-list',
@@ -15,7 +16,7 @@ export class CourseListComponent implements OnInit{
 
   searchTerm: string = '';
 
-  constructor(private courseService: CourseService) {}
+  constructor(private courseService: CourseService, private scheduleService: ScheduleService) {}
 
   ngOnInit(): void {
     this.courseService.getCourses().subscribe(data => {
@@ -58,6 +59,10 @@ setSort(column: keyof Course) {
     this.sortColumn = column;
     this.sortAsc = true; 
   }
+}
+addToSchedule(course: Course): void {
+  console.log('lägger till kurs:', course);
+  this.scheduleService.addCourse(course);
 }
 
 }
