@@ -27,9 +27,37 @@ export class CourseListComponent implements OnInit{
   }
 
 get filteredCourses(): Course[] {
-  return this.courses.filter(course =>
+  let filtered = this.courses.filter(course =>
     course.courseName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
     course.courseCode.toLowerCase().includes(this.searchTerm.toLowerCase())
   );
+  return filtered.sort((a, b) => {
+    const valA = a[this.sortColumn];
+    const valB = b[this.sortColumn];
+
+    if (typeof valA === 'string' && typeof valB === 'string') {
+      return this.sortAsc
+      ? valA.localeCompare(valB)
+      : valB.localeCompare(valA);
+    }
+
+    if (typeof valA === 'number' && typeof valB === 'number') {
+      return this.sortAsc ? valA -  valB : valB - valA;
+    }
+
+    return 0;
+  });
 }
+sortColumn: keyof Course = 'courseCode'; 
+sortAsc: boolean = true; 
+
+setSort(column: keyof Course) {
+  if (this.sortColumn === column) {
+    this.sortAsc = !this.sortAsc; 
+  } else {
+    this.sortColumn = column;
+    this.sortAsc = true; 
+  }
+}
+
 }

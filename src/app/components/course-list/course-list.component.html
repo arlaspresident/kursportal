@@ -6,8 +6,25 @@
   [(ngModel)]="searchTerm"
 />
 
-<ul>
-  <li *ngFor="let course of filteredCourses">
-    {{ course.courseCode }} – {{ course.courseName }} ({{ course.points }} hp)
-  </li>
-</ul>
+<table>
+    <thead>
+      <tr>
+        <th (click)="setSort('courseCode')">
+          Kurskod {{ sortColumn === 'courseCode' ? (sortAsc ? '▲' : '▼') : '' }}
+        </th>
+        <th (click)="setSort('courseName')">
+          Kursnamn {{ sortColumn === 'courseName' ? (sortAsc ? '▲' : '▼') : '' }}
+        </th>
+        <th (click)="setSort('points')">
+          Poäng {{ sortColumn === 'points' ? (sortAsc ? '▲' : '▼') : '' }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of filteredCourses">
+        <td>{{ course.courseCode }}</td>
+        <td>{{ course.courseName }}</td>
+        <td>{{ course.points }}</td>
+      </tr>
+    </tbody>
+  </table>
