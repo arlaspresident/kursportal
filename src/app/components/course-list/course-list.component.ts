@@ -65,4 +65,9 @@ addToSchedule(course: Course): void {
   this.scheduleService.addCourse(course);
 }
 
+isInSchedule(course: Course): boolean {
+  const current = this.scheduleService.getSchedule();
+  return current.some(c=> c.courseCode === course.courseCode);
+}
+
 }

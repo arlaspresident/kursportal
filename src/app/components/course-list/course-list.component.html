@@ -26,7 +26,12 @@
         <td>{{ course.courseName }}</td>
         <td>{{ course.points }}</td>
         <td>
-            <button (click)="addToSchedule(course)">Lägg till</button>
+            <button 
+            (click)="addToSchedule(course)"
+        [disabled]="isInSchedule(course)"
+    >
+{{ isInSchedule(course) ? 'Redan tillagd' : 'Lägg till'}}
+</button>
         </td>
       </tr>
     </tbody>
