@@ -32,6 +32,10 @@ get filteredCourses(): Course[] {
     course.courseName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
     course.courseCode.toLowerCase().includes(this.searchTerm.toLowerCase())
   );
+
+  if (this.selectedSubject) {
+    filtered = filtered.filter(course => course.subject === this.selectedSubject);
+  }
   return filtered.sort((a, b) => {
     const valA = a[this.sortColumn];
     const valB = b[this.sortColumn];
@@ -68,6 +72,13 @@ addToSchedule(course: Course): void {
 isInSchedule(course: Course): boolean {
   const current = this.scheduleService.getSchedule();
   return current.some(c=> c.courseCode === course.courseCode);
+}
+
+selectedSubject: string='';
+
+get subjects(): string[] {
+  const uniqueSubjects = new Set(this.courses.map(c => c.subject));
+  return Array.from(uniqueSubjects).sort();
 }
 
 }

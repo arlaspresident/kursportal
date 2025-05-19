@@ -1,10 +1,24 @@
 <h2>Kurser</h2>
 
+<div class="filter-bar">
 <input
   type="text"
   placeholder="Sök kurskod eller kursnamn"
   [(ngModel)]="searchTerm"
 />
+
+<div class="subject-filter">
+<label for="subjectFilter">Filtrera:</label>
+<select id="subjectFilter" [(ngModel)]="selectedSubject">
+  <option value="">Alla ämnen</option>
+  <option *ngFor="let subject of subjects" [value]="subject">
+    {{ subject }}
+  </option>
+</select>
+</div>
+</div>
+
+<p>Visar {{ filteredCourses.length }} av {{ courses.length }} kurser</p>
 
 <table>
     <thead>
