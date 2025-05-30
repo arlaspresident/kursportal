@@ -26,9 +26,12 @@ För att köra projektet lokalt:
 1. klona projektet
 
 ``` git clone https://github.com/arlaspresident/kursportal.git```
+
 2. installera beroenden
 ``` npm install```
+
 3. starta utvecklingsserver 
-``` ng serve````
+``` ng serve```
+
 4. öppna i webbläsaren
 http://localhost:4200
